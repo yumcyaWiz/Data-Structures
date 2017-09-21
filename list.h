@@ -59,6 +59,26 @@ class List {
             ln->next = new ListNode<T>(x, nullptr);
         };
         void pop_back() {
+            if(first == nullptr) {
+                std::cerr << "List is already empty" << std::endl;
+                exit(1);
+            }
+            
+            size--;
+            if(first->next == nullptr) {
+                delete first;
+                first = nullptr;
+                return;
+            };
+
+            ListNode<T>* ln = first;
+            ListNode<T>* pre = nullptr;
+            while(ln->next) {
+                pre = ln;
+                ln = ln->next;
+            }
+            delete ln;
+            pre->next = nullptr;
         };
         void insert(int i) {
         };
