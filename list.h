@@ -81,11 +81,12 @@ class List {
             pre->next = nullptr;
         };
         void insert(int i, T x) {
-            if(i > size - 1 || i < 0) {
+            if(i > size || i < 0) {
                 std::cerr << "index is out of range" << std::endl;
                 exit(1);
             }
 
+            size++;
             if(i == 0) {
                 first = new ListNode<T>(x, first);
                 return;
@@ -107,8 +108,7 @@ class List {
                 prev_node = ln;
                 ln = ln->next;
             }
-            ListNode<T>* next_node = ln->next;
-            ListNode<T>* insert_node = ListNode<T>(x, next_node);
+            ListNode<T>* insert_node = new ListNode<T>(x, ln);
             prev_node->next = insert_node;
         };
         void erase(int i) {
@@ -127,6 +127,9 @@ class List {
             }
             while(ln);
             std::cout << std::endl;
+        };
+        int getSize() {
+            return size;
         };
 };
 #endif
