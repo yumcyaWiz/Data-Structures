@@ -80,9 +80,53 @@ class List {
             delete ln;
             pre->next = nullptr;
         };
-        void insert(int i) {
+        void insert(int i, T x) {
+            if(i > size - 1 || i < 0) {
+                std::cerr << "index is out of range" << std::endl;
+                exit(1);
+            }
+
+            if(i == 0) {
+                first = new ListNode<T>(x, first);
+                return;
+            }
+            else if(i == size) {
+                ListNode<T>* ln = first;
+                while(ln->next) {
+                    ln = ln->next;
+                }
+
+                ListNode<T>* insert_node = new ListNode<T>(x, nullptr);
+                ln->next = insert_node;
+                return;
+            }
+
+            ListNode<T>* ln = first;
+            ListNode<T>* prev_node = nullptr;
+            for(int idx = 0; idx < i; idx++) {
+                prev_node = ln;
+                ln = ln->next;
+            }
+            ListNode<T>* next_node = ln->next;
+            ListNode<T>* insert_node = ListNode<T>(x, next_node);
+            prev_node->next = insert_node;
         };
         void erase(int i) {
+        };
+        void print() {
+            int index = 0;
+            ListNode<T>* ln = first;
+            do {
+                if(ln->next) {
+                    std::cout << ln->data << " -> ";
+                }
+                else {
+                    std::cout << ln->data;
+                }
+                ln = ln->next;
+            }
+            while(ln);
+            std::cout << std::endl;
         };
 };
 #endif
