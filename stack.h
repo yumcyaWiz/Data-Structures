@@ -34,5 +34,16 @@ class Stack {
             index--;
             return data[index];
         };
+        void print() {
+            for(int i = 0; i < index; i++) {
+                if(i < index - 1) {
+                    std::cout << data[i] << " ";
+                }
+                else {
+                    std::cout << data[i];
+                }
+            }
+            std::cout << std::endl;
+        };
 };
 #endif
